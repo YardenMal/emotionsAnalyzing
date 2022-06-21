@@ -52,10 +52,7 @@ ADD infoId int;]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="f2584653-9655-4040-ab4e-acd4a7752e76" object-ref="schemas/sensound/tables/Users" />
-      <object connection-id="f2584653-9655-4040-ab4e-acd4a7752e76" object-ref="schemas/sensound/tables/feelingsInfo" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="f2584653-9655-4040-ab4e-acd4a7752e76" />
@@ -65,6 +62,11 @@ ADD infoId int;]]></console>
     <filter-actions connection-id="f2584653-9655-4040-ab4e-acd4a7752e76" dataset="sensound.feelingsInfo" active-filter-id="EMPTY_FILTER">
       <filter id="ac5293f9-13a9-40b0-ad7a-4a6f08277be6" name="happiness" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="feelingType" operator="=" value="happiness" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="f2584653-9655-4040-ab4e-acd4a7752e76" dataset="sensound.UsersEmotions" active-filter-id="74f06f77-f1c1-4354-b459-438dcbd1798d">
+      <filter id="74f06f77-f1c1-4354-b459-438dcbd1798d" name="Filter 1" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="DateOfRecord" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
     <filter-actions connection-id="f2584653-9655-4040-ab4e-acd4a7752e76" dataset="sensound.Users" active-filter-id="EMPTY_FILTER" />

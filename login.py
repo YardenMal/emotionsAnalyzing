@@ -14,13 +14,15 @@ from kivy.app import App
 from plyer import filechooser
 from kivy.uix.floatlayout import FloatLayout
 from kivy.factory import Factory
-from kivy.properties import ObjectProperty
+# from kivy.properties import ObjectProperty
 # from asteroid.models import BaseModel
 from kivy.uix.popup import Popup
 import os
+
+import emotion_classify
 from model_predict import model_predict
 from utils import extract_feature
-
+from emotion_classify import emo_chart
 helpstr = '''
 ScreenManager:
     WelcomeScreen:
@@ -667,14 +669,22 @@ class NewApp(MDApp):
         if selection:
             self.wavFile = selection[0]
             if self.wavFile:
-                self.model = pickle.load(open("GB_classifier.model", "rb"))
-                # model = pickle.load(open("C:\\Users\\USER\Desktop\\Technion\\סמסטר ז\\emotionsAnalyzing\\GB_classifier.model", "rb"))
+                # self.model = pickle.load(open("GB_classifier.model", "rb"))
+                model = pickle.load(open("C:\\Users\\USER\Desktop\\Technion\\סמסטר ז\\emotionsAnalyzing\\GB_classifier.model", "rb"))
                 features = extract_feature(self.wavFile, mfcc=True, chroma=True, mel=True).reshape(1, -1)
                 result = self.model.predict(features)[0]
                 self.result = result
 
                 self.emotionInfo = NewApp.identifyEmotion(self)
                 NewApp.pop_up_emotion(self)
+
+    def selectedRaya(self, selection):
+        if selection:
+            self.wavFile = selection[0]
+            if self.wavFile:
+                raya = emotion_classify.emo_chart(self.wavFile)
+                print(raya)
+
 
     def pop_up_emotion(self):
         idx, emotion, header, info = NewApp.identifyEmotion(self)
