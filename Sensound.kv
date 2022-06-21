@@ -1,0 +1,109 @@
+<ContentNavigationDrawer>:
+    orientation: "vertical"
+    FloatLayout:
+        size_hint_y: None
+        height: "200dp"
+        BoxLayout:
+            id: box_image
+            x: root.x
+            pos_hint: {"top": 1}
+            FloatLayout:
+                # Imagem de fundo
+                FitImage:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    source: "./images/menu.png"
+                # Imagem do usuário
+                FitImage:
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    source: "data/logo/kivy-icon-256.png"
+                    size_hint: None, None
+                    width: dp(150)
+                    height: dp(150)
+                    radius: [99, 99, 99, 99]
+        MDLabel:
+            text: "Coletor de dados WShop"
+            size_hint_y: None
+            height: self.texture_size[1]
+            # Define a posição do Label
+            x: root.x + 10
+            y: root.height - box_image.height + dp(10)
+    ScrollView:
+        MDList:
+            OneLineIconListItem:
+                text: "Produtos DataTable"
+                on_press:
+                    root.nav_drawer.set_state("close")
+                    root.screen_manager.current = 'products_datadablescreen'
+                    root.screen_manager.transition.direction = 'right'
+                IconLeftWidget:
+                    icon: 'account-cash'
+
+
+<signupWindow>:
+    MDBoxLayout:
+        orientation : 'vertical'
+        Image :
+            source : "whitelogo.png"
+            #opacity : .9
+            pos_hint: {"center_x": .5, "center_y": .2}
+            size_hint : .5,.5
+        MDGridLayout:
+            cols : 1
+            padding : 150, 0,150,10
+            spacing : 10
+            pos_hint : {"center_x":.5,"center_y":.5}
+            MDCard:
+                #size_hint: None, None
+                #size: "280dp", "180dp"
+                pos_hint: {"center_x": .5, "center_y": .5}
+                radius: [20,]
+                elevation : 30
+                opacity : .9
+                MDBoxLayout:
+                    orientation : 'vertical'
+                    padding :10,10,10,70
+                    spacing : 10
+                    MDTextField :
+                        id : email
+                        hint_text : "Enter Email "
+                        helper_text_mode : "on_focus"
+                        icon_right : "account"
+                        icon_right_color : app.theme_cls.primary_color
+                        pos_hint : {'center_x': 0.5, 'center_y': 0.7}
+                        required: True
+                        size_hint_x: None
+                        width : 250
+
+                    MDTextField :
+                        id : userName
+                        hint_text : "User name"
+                        helper_text_mode : "on_focus"
+                        icon_right : "account"
+                        icon_right_color : app.theme_cls.primary_color
+                        pos_hint : {'center_x': 0.5, 'center_y': 0.5}
+                        required: True
+                        size_hint_x: None
+                        width : 250
+
+# GUI for pop up window
+<P>:
+	Label:
+		text : "This email already exists"
+		size_hint : 0.2, 0.1
+		pos_hint : {"x" : 0.3, "top" : 0.8}
+
+
+# GUI for pop up window
+<InvalidMailAddress>:
+	Label:
+		text : "Please enter a valid email address"
+		size_hint : 0.2, 0.1
+		pos_hint : {"x" : 0.3, "top" : 0.8}
+
+
+# GUI for pop up window
+<EmptyFields>:
+	Label:
+		text : "Please fill all the fields"
+		size_hint : 0.2, 0.1
+		pos_hint : {"x" : 0.3, "top" : 0.8}
